@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aura Realms — Bespoke Private Island &amp; Estate Concierge</title>
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -930,11 +932,11 @@
         <div class="form-row">
           <div class="form-group">
             <label for="client-name">Guest of Honor Name</label>
-            <input type="text" id="client-name" name="name" placeholder="Lord / Lady / Principal Name" required />
+            <input type="text" id="client-name" name="name" placeholder="Lord / Lady / Principal Name" maxlength="80" autocomplete="name" required />
           </div>
           <div class="form-group">
-            <label for="client-email">Confidential Contact (Email or Signal)</label>
-            <input type="email" id="client-email" name="email" placeholder="principal@familyoffice.ch" required />
+            <label for="client-email">Confidential Contact (Email)</label>
+            <input type="email" id="client-email" name="email" placeholder="principal@familyoffice.ch" maxlength="100" autocomplete="email" spellcheck="false" required />
           </div>
         </div>
         <div class="form-row">
@@ -957,7 +959,7 @@
         </div>
         <div class="form-group">
           <label for="special-requests">Bespoke Requests &amp; Sommelier Preferences</label>
-          <textarea id="special-requests" name="requests" rows="3" placeholder="Specify wine allocations, dietary mandates, security protocol, or custom arrival ceremonies..."></textarea>
+          <textarea id="special-requests" name="requests" rows="3" maxlength="500" placeholder="Specify wine allocations, dietary mandates, security protocol, or custom arrival ceremonies..."></textarea>
         </div>
         <button type="submit" class="submit-inquiry-btn">Transmit Confidential Inquiry ↗</button>
       </form>
