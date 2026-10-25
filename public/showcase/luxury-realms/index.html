@@ -3,32 +3,980 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aura Realm — Bespoke Private Island & Jet Concierge</title>
+  <title>Aura Realms — Bespoke Private Island &amp; Estate Concierge</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header className="hero">
-    <div className="brand">AURA REALMS</div>
-    <h1>Exclusive Private Island Charters &amp; Aviation</h1>
-    <p>Tailored ultra-high-net-worth concierge experiences across Seychelles, St. Barts, and the Swiss Alps.</p>
-    <button className="book-btn" onclick="inquireConcierge()">Private Inquiry ↗</button>
+  <!-- Top Ambient Glow -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="luxury-nav" aria-label="Global Navigation">
+    <div class="nav-container">
+      <div class="brand-group">
+        <span class="brand-crest" aria-hidden="true">⚜</span>
+        <div class="brand-text">
+          <span class="brand-title">AURA REALMS</span>
+          <span class="brand-subtitle">PRIVATE ISLANDS &amp; ESTATES</span>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#featured-estates" class="nav-item">Sanctuaries</a>
+        <a href="#amenities-curation" class="nav-item">Amenities</a>
+        <a href="#aviation-charter" class="nav-item">Fleet &amp; Jets</a>
+      </div>
+      <button class="nav-inquire-btn" onclick="openInquiryModal('General Portfolio Consultation')">
+        <span>VIP Desk ↗</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-badge">
+      <span class="gold-dot" aria-hidden="true"></span>
+      <span>ULTRA-EXCLUSIVE PRIVATE SANCTUARIES</span>
+    </div>
+    <h1>Bespoke Private Estates &amp; Island Charters</h1>
+    <p>Tailored ultra-high-net-worth concierge acquisitions, private atolls, and secluded sanctuaries across Maldives, French Riviera, Lake Como, and the Swiss Alps.</p>
+    
+    <div class="hero-cta-group">
+      <a href="#featured-estates" class="book-btn">Explore Featured Sanctuaries ↓</a>
+      <button class="concierge-ghost-btn" onclick="openInquiryModal('Direct Private Concierge')">Private Inquiry ↗</button>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">Discretion &amp; Privacy</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item">
+        <span class="stat-number">24/7</span>
+        <span class="stat-label">Bespoke Butler Brigade</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item">
+        <span class="stat-number">ICAO</span>
+        <span class="stat-label">Private Helipads &amp; Docks</span>
+      </div>
+    </div>
   </header>
 
-  <main className="destinations">
-    <div className="card">
-      <div className="icon">🏝️</div>
-      <h3>The Azure Atoll Sanctuary</h3>
-      <p>Private Island • Maldives • Max 12 Guests</p>
+  <!-- Filter & Controls Toolbar -->
+  <section class="filter-section" id="amenities-curation">
+    <div class="filter-container">
+      <div class="filter-header">
+        <div class="filter-tag">CURATED LUXURY AMENITIES</div>
+        <h2>Filter Sanctuaries by Prestige Features</h2>
+        <p>Refine your estate selection by bespoke ultra-luxury amenities equipped with certified gold-standard facilities.</p>
+      </div>
+
+      <div class="amenity-filter-bar" role="toolbar" aria-label="Filter estates by amenity">
+        <button class="filter-pill active" data-filter="all" onclick="filterByAmenity('all', this)">
+          <span class="filter-icon">✨</span>
+          <span class="filter-name">All Estates</span>
+          <span class="filter-count" id="count-all">6</span>
+        </button>
+        <button class="filter-pill" data-filter="helipad" onclick="filterByAmenity('helipad', this)">
+          <span class="filter-icon" aria-hidden="true">
+            <svg class="pill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="9.5"></circle>
+              <circle cx="12" cy="12" r="6" stroke-dasharray="2 2"></circle>
+              <path d="M8 8v8M16 8v8M8 12h8" stroke-width="2.2"></path>
+            </svg>
+          </span>
+          <span class="filter-name">Helipad</span>
+          <span class="filter-count" id="count-helipad">6</span>
+        </button>
+        <button class="filter-pill" data-filter="dock" onclick="filterByAmenity('dock', this)">
+          <span class="filter-icon" aria-hidden="true">
+            <svg class="pill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="5" r="2.5"></circle>
+              <path d="M12 7.5V19"></path>
+              <path d="M6 11.5h12"></path>
+              <path d="M5.5 14.5c1.5 4.5 11.5 4.5 13 0"></path>
+            </svg>
+          </span>
+          <span class="filter-name">Private Dock</span>
+          <span class="filter-count" id="count-dock">5</span>
+        </button>
+        <button class="filter-pill" data-filter="chef" onclick="filterByAmenity('chef', this)">
+          <span class="filter-icon" aria-hidden="true">
+            <svg class="pill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M12 3v2.5"></path>
+              <circle cx="12" cy="3" r="1.2" fill="currentColor"></circle>
+              <path d="M4 16a8 8 0 0 1 16 0H4z"></path>
+              <path d="M2.5 18.5h19"></path>
+              <path d="M7 21h10"></path>
+            </svg>
+          </span>
+          <span class="filter-name">Michelin Chef</span>
+          <span class="filter-count" id="count-chef">6</span>
+        </button>
+        <button class="filter-pill" data-filter="pool" onclick="filterByAmenity('pool', this)">
+          <span class="filter-icon" aria-hidden="true">
+            <svg class="pill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M2 9h20"></path>
+              <path d="M2 13.5c2.5 0 3.5-1.5 6-1.5s3.5 1.5 6 1.5 3.5-1.5 6-1.5"></path>
+              <path d="M2 18c2.5 0 3.5-1.5 6-1.5s3.5 1.5 6 1.5 3.5-1.5 6-1.5"></path>
+            </svg>
+          </span>
+          <span class="filter-name">Infinity Pool</span>
+          <span class="filter-count" id="count-pool">5</span>
+        </button>
+        <button class="filter-pill" data-filter="wine" onclick="filterByAmenity('wine', this)">
+          <span class="filter-icon" aria-hidden="true">
+            <svg class="pill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M10 2.5h4v3a2 2 0 0 1-.6 1.4L12 8.5l-1.4-1.6A2 2 0 0 1 10 5.5v-3z"></path>
+              <rect x="7" y="8.5" width="10" height="13" rx="2"></rect>
+              <path d="M10 13h4"></path>
+            </svg>
+          </span>
+          <span class="filter-name">Wine Cellar</span>
+          <span class="filter-count" id="count-wine">5</span>
+        </button>
+      </div>
+
+      <div class="filter-status-row">
+        <span class="active-count-indicator" id="filter-status-text">Showing all 6 private sanctuaries</span>
+        <button class="reset-filter-btn" id="reset-filter-btn" onclick="filterByAmenity('all', document.querySelector('.filter-pill[data-filter=\'all\']'))" style="display: none;">Reset Filters ↺</button>
+      </div>
     </div>
-    <div className="card">
-      <div className="icon">🛩️</div>
-      <h3>Global Express 7500 Jet</h3>
-      <p>Intercontinental Flight • Custom Interiors</p>
+  </section>
+
+  <!-- Featured Estate & Island Listing Cards -->
+  <main class="destinations" id="featured-estates">
+    <div class="section-title-wrap">
+      <span class="eyebrow">WORLD PORTFOLIO</span>
+      <h2>Exclusive Private Estates &amp; Atolls</h2>
+      <p>Each retreat is an architectural masterpiece equipped with dedicated flight access, culinary masters, and deep-water berths.</p>
+    </div>
+
+    <div class="estate-grid">
+      <!-- Card 1: The Azure Atoll Sanctuary -->
+      <article class="card estate-card" data-amenities="helipad dock chef pool wine" data-title="The Azure Atoll Sanctuary">
+        <div class="card-visual atoll-visual">
+          <div class="visual-overlay"></div>
+          <div class="estate-tag">PRIVATE ATOLL</div>
+          <div class="estate-price">
+            <span class="currency">$65,000</span>
+            <span class="period">/ night</span>
+          </div>
+          <div class="visual-icon" aria-hidden="true">🏝️</div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-info">
+            <span class="estate-region">NOONU ATOLL • MALDIVES</span>
+            <h3>The Azure Atoll Sanctuary</h3>
+            <p class="estate-summary">Secluded turquoise coral atoll spanning 45 pristine acres with 8 glass-bottom ocean residences, lagoon mooring, and sunset helipad.</p>
+          </div>
+
+          <div class="estate-specs-row">
+            <span class="spec-badge">12 VIP Guests</span>
+            <span class="spec-dot">•</span>
+            <span class="spec-badge">8 Overwater Pavilions</span>
+            <span class="spec-dot">•</span>
+            <span class="spec-badge">45 Private Acres</span>
+          </div>
+
+          <div class="amenities-container">
+            <div class="amenities-title-wrap">
+              <span class="amenity-section-label">CURATED LUXURY AMENITIES</span>
+              <span class="amenity-hint">Click badge for specs</span>
+            </div>
+            
+            <div class="badges-grid" role="list" aria-label="Curated Luxury Amenities for The Azure Atoll Sanctuary">
+              <!-- Helipad Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="helipad" aria-label="Amenity: Helipad. Click to view aviation specs.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Helipad Icon">
+                    <circle cx="12" cy="12" r="9.5" stroke="#d4af37" stroke-width="1.5"></circle>
+                    <circle cx="12" cy="12" r="6" stroke="#d4af37" stroke-dasharray="2 2" stroke-width="1"></circle>
+                    <path d="M8 7.5v9M16 7.5v9M8 12h8" stroke="#d4af37" stroke-width="2.2"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Helipad</span>
+                  <span class="badge-sub">24/7 ICAO Certified</span>
+                </div>
+              </div>
+
+              <!-- Private Dock Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="dock" aria-label="Amenity: Private Dock. Click to view superyacht slip specs.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Private Dock Icon">
+                    <circle cx="12" cy="5" r="2.5"></circle>
+                    <path d="M12 7.5V19.5"></path>
+                    <path d="M5.5 11.5h13"></path>
+                    <path d="M5 14.5c1.5 4.5 12.5 4.5 14 0"></path>
+                    <path d="M3 20.5h18" stroke-width="1.2" stroke-dasharray="2 2"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Private Dock</span>
+                  <span class="badge-sub">Mega-Yacht Berthing</span>
+                </div>
+              </div>
+
+              <!-- Michelin Chef Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="chef" aria-label="Amenity: Michelin Chef. Click to view private brigade details.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Michelin Chef Icon">
+                    <path d="M12 3v2.5"></path>
+                    <circle cx="12" cy="3" r="1.2" fill="#d4af37"></circle>
+                    <path d="M4 16a8 8 0 0 1 16 0H4z"></path>
+                    <path d="M2.5 18.5h19"></path>
+                    <circle cx="8" cy="11.5" r="0.8" fill="#d4af37"></circle>
+                    <circle cx="12" cy="10" r="0.8" fill="#d4af37"></circle>
+                    <circle cx="16" cy="11.5" r="0.8" fill="#d4af37"></circle>
+                    <path d="M7 21h10" stroke-width="1.2"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Michelin Chef</span>
+                  <span class="badge-sub">3-Star Brigade Team</span>
+                </div>
+              </div>
+
+              <!-- Infinity Pool Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="pool" aria-label="Amenity: Infinity Pool. Click to view heated saltwater details.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Infinity Pool Icon">
+                    <path d="M2 8.5h20"></path>
+                    <path d="M2 13c2.5 0 3.5-1.5 6-1.5s3.5 1.5 6 1.5 3.5-1.5 6-1.5"></path>
+                    <path d="M2 17.5c2.5 0 3.5-1.5 6-1.5s3.5 1.5 6 1.5 3.5-1.5 6-1.5"></path>
+                    <circle cx="12" cy="5" r="2"></circle>
+                    <path d="M18 3.5l1.5 1.5M6 3.5L4.5 5"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Infinity Pool</span>
+                  <span class="badge-sub">Lagoon Horizon Edge</span>
+                </div>
+              </div>
+
+              <!-- Wine Cellar Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="wine" aria-label="Amenity: Wine Cellar. Click to view sommelier reserve vintages.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Wine Cellar Icon">
+                    <path d="M10 2.5h4v3a2 2 0 0 1-.6 1.4L12 8.5l-1.4-1.6A2 2 0 0 1 10 5.5v-3z"></path>
+                    <rect x="7" y="8.5" width="10" height="13" rx="2"></rect>
+                    <path d="M10 13h4"></path>
+                    <circle cx="12" cy="17" r="1.5" fill="#d4af37"></circle>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Wine Cellar</span>
+                  <span class="badge-sub">3,000 Grand Cru Bottles</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="reserve-btn" onclick="openInquiryModal('The Azure Atoll Sanctuary')">Reserve Sanctuary ↗</button>
+            <button class="brochure-btn" onclick="downloadBrochure('The Azure Atoll Sanctuary')">Private Folio</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2: Villa Belle Époque -->
+      <article class="card estate-card" data-amenities="helipad dock chef pool wine" data-title="Villa Belle Époque">
+        <div class="card-visual riviera-visual">
+          <div class="visual-overlay"></div>
+          <div class="estate-tag">CLIFFSIDE CHÂTEAU</div>
+          <div class="estate-price">
+            <span class="currency">$82,000</span>
+            <span class="period">/ night</span>
+          </div>
+          <div class="visual-icon" aria-hidden="true">🏰</div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-info">
+            <span class="estate-region">SAINT-JEAN-CAP-FERRAT • FRENCH RIVIERA</span>
+            <h3>Villa Belle Époque</h3>
+            <p class="estate-summary">A monumental cliffside estate overlooking the Mediterranean with terraced Italian gardens, royal suites, subterranean wine vaults, and rooftop heliport.</p>
+          </div>
+
+          <div class="estate-specs-row">
+            <span class="spec-badge">16 VIP Guests</span>
+            <span class="spec-dot">•</span>
+            <span class="spec-badge">9 Palatial Suites</span>
+            <span class="spec-dot">•</span>
+            <span class="spec-badge">Oceanfront Clifftop</span>
+          </div>
+
+          <div class="amenities-container">
+            <div class="amenities-title-wrap">
+              <span class="amenity-section-label">CURATED LUXURY AMENITIES</span>
+              <span class="amenity-hint">Click badge for specs</span>
+            </div>
+            
+            <div class="badges-grid" role="list" aria-label="Curated Luxury Amenities for Villa Belle Époque">
+              <!-- Helipad Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="helipad" aria-label="Amenity: Helipad. Click to view aviation specs.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Helipad Icon">
+                    <circle cx="12" cy="12" r="9.5" stroke="#d4af37" stroke-width="1.5"></circle>
+                    <circle cx="12" cy="12" r="6" stroke="#d4af37" stroke-dasharray="2 2" stroke-width="1"></circle>
+                    <path d="M8 7.5v9M16 7.5v9M8 12h8" stroke="#d4af37" stroke-width="2.2"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Helipad</span>
+                  <span class="badge-sub">Monaco Link Landing</span>
+                </div>
+              </div>
+
+              <!-- Private Dock Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="dock" aria-label="Amenity: Private Dock. Click to view superyacht slip specs.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Private Dock Icon">
+                    <circle cx="12" cy="5" r="2.5"></circle>
+                    <path d="M12 7.5V19.5"></path>
+                    <path d="M5.5 11.5h13"></path>
+                    <path d="M5 14.5c1.5 4.5 12.5 4.5 14 0"></path>
+                    <path d="M3 20.5h18" stroke-width="1.2" stroke-dasharray="2 2"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Private Dock</span>
+                  <span class="badge-sub">Tender Fjord Pier</span>
+                </div>
+              </div>
+
+              <!-- Michelin Chef Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="chef" aria-label="Amenity: Michelin Chef. Click to view private brigade details.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Michelin Chef Icon">
+                    <path d="M12 3v2.5"></path>
+                    <circle cx="12" cy="3" r="1.2" fill="#d4af37"></circle>
+                    <path d="M4 16a8 8 0 0 1 16 0H4z"></path>
+                    <path d="M2.5 18.5h19"></path>
+                    <circle cx="8" cy="11.5" r="0.8" fill="#d4af37"></circle>
+                    <circle cx="12" cy="10" r="0.8" fill="#d4af37"></circle>
+                    <circle cx="16" cy="11.5" r="0.8" fill="#d4af37"></circle>
+                    <path d="M7 21h10" stroke-width="1.2"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Michelin Chef</span>
+                  <span class="badge-sub">French Haute Gastronomy</span>
+                </div>
+              </div>
+
+              <!-- Infinity Pool Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="pool" aria-label="Amenity: Infinity Pool. Click to view heated saltwater details.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Infinity Pool Icon">
+                    <path d="M2 8.5h20"></path>
+                    <path d="M2 13c2.5 0 3.5-1.5 6-1.5s3.5 1.5 6 1.5 3.5-1.5 6-1.5"></path>
+                    <path d="M2 17.5c2.5 0 3.5-1.5 6-1.5s3.5 1.5 6 1.5 3.5-1.5 6-1.5"></path>
+                    <circle cx="12" cy="5" r="2"></circle>
+                    <path d="M18 3.5l1.5 1.5M6 3.5L4.5 5"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Infinity Pool</span>
+                  <span class="badge-sub">Cliffside Heated Horizon</span>
+                </div>
+              </div>
+
+              <!-- Wine Cellar Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="wine" aria-label="Amenity: Wine Cellar. Click to view sommelier reserve vintages.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Wine Cellar Icon">
+                    <path d="M10 2.5h4v3a2 2 0 0 1-.6 1.4L12 8.5l-1.4-1.6A2 2 0 0 1 10 5.5v-3z"></path>
+                    <rect x="7" y="8.5" width="10" height="13" rx="2"></rect>
+                    <path d="M10 13h4"></path>
+                    <circle cx="12" cy="17" r="1.5" fill="#d4af37"></circle>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Wine Cellar</span>
+                  <span class="badge-sub">Bordeaux First Growths</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="reserve-btn" onclick="openInquiryModal('Villa Belle Époque')">Reserve Sanctuary ↗</button>
+            <button class="brochure-btn" onclick="downloadBrochure('Villa Belle Époque')">Private Folio</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3: Isola di Lumina -->
+      <article class="card estate-card" data-amenities="helipad dock chef pool" data-title="Isola di Lumina">
+        <div class="card-visual sardinia-visual">
+          <div class="visual-overlay"></div>
+          <div class="estate-tag">PRIVATE ARCHIPELAGO</div>
+          <div class="estate-price">
+            <span class="currency">$54,000</span>
+            <span class="period">/ night</span>
+          </div>
+          <div class="visual-icon" aria-hidden="true">🌅</div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-info">
+            <span class="estate-region">COSTA SMERALDA • SARDINIA, ITALY</span>
+            <h3>Isola di Lumina</h3>
+            <p class="estate-summary">Raw Mediterranean luxury set across a granite island sanctuary with private powdery sand coves, illuminated deep moorings, and sea-level infinity pools.</p>
+          </div>
+
+          <div class="estate-specs-row">
+            <span class="spec-badge">14 VIP Guests</span>
+            <span class="spec-dot">•</span>
+            <span class="spec-badge">7 Granite Villas</span>
+            <span class="spec-dot">•</span>
+            <span class="spec-badge">3 Secluded Coves</span>
+          </div>
+
+          <div class="amenities-container">
+            <div class="amenities-title-wrap">
+              <span class="amenity-section-label">CURATED LUXURY AMENITIES</span>
+              <span class="amenity-hint">Click badge for specs</span>
+            </div>
+            
+            <div class="badges-grid" role="list" aria-label="Curated Luxury Amenities for Isola di Lumina">
+              <!-- Helipad Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="helipad" aria-label="Amenity: Helipad. Click to view aviation specs.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Helipad Icon">
+                    <circle cx="12" cy="12" r="9.5" stroke="#d4af37" stroke-width="1.5"></circle>
+                    <circle cx="12" cy="12" r="6" stroke="#d4af37" stroke-dasharray="2 2" stroke-width="1"></circle>
+                    <path d="M8 7.5v9M16 7.5v9M8 12h8" stroke="#d4af37" stroke-width="2.2"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Helipad</span>
+                  <span class="badge-sub">Twin-Engine Certified</span>
+                </div>
+              </div>
+
+              <!-- Private Dock Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="dock" aria-label="Amenity: Private Dock. Click to view superyacht slip specs.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Private Dock Icon">
+                    <circle cx="12" cy="5" r="2.5"></circle>
+                    <path d="M12 7.5V19.5"></path>
+                    <path d="M5.5 11.5h13"></path>
+                    <path d="M5 14.5c1.5 4.5 12.5 4.5 14 0"></path>
+                    <path d="M3 20.5h18" stroke-width="1.2" stroke-dasharray="2 2"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Private Dock</span>
+                  <span class="badge-sub">60m Yacht Berth</span>
+                </div>
+              </div>
+
+              <!-- Michelin Chef Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="chef" aria-label="Amenity: Michelin Chef. Click to view private brigade details.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Michelin Chef Icon">
+                    <path d="M12 3v2.5"></path>
+                    <circle cx="12" cy="3" r="1.2" fill="#d4af37"></circle>
+                    <path d="M4 16a8 8 0 0 1 16 0H4z"></path>
+                    <path d="M2.5 18.5h19"></path>
+                    <circle cx="8" cy="11.5" r="0.8" fill="#d4af37"></circle>
+                    <circle cx="12" cy="10" r="0.8" fill="#d4af37"></circle>
+                    <circle cx="16" cy="11.5" r="0.8" fill="#d4af37"></circle>
+                    <path d="M7 21h10" stroke-width="1.2"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Michelin Chef</span>
+                  <span class="badge-sub">Sardinian Seafood Master</span>
+                </div>
+              </div>
+
+              <!-- Infinity Pool Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="pool" aria-label="Amenity: Infinity Pool. Click to view heated saltwater details.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Infinity Pool Icon">
+                    <path d="M2 8.5h20"></path>
+                    <path d="M2 13c2.5 0 3.5-1.5 6-1.5s3.5 1.5 6 1.5 3.5-1.5 6-1.5"></path>
+                    <path d="M2 17.5c2.5 0 3.5-1.5 6-1.5s3.5 1.5 6 1.5 3.5-1.5 6-1.5"></path>
+                    <circle cx="12" cy="5" r="2"></circle>
+                    <path d="M18 3.5l1.5 1.5M6 3.5L4.5 5"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Infinity Pool</span>
+                  <span class="badge-sub">Granite Saltwater Edge</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="reserve-btn" onclick="openInquiryModal('Isola di Lumina')">Reserve Sanctuary ↗</button>
+            <button class="brochure-btn" onclick="downloadBrochure('Isola di Lumina')">Private Folio</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4: Palazzo del Cigno -->
+      <article class="card estate-card" data-amenities="dock wine chef helipad" data-title="Palazzo del Cigno">
+        <div class="card-visual como-visual">
+          <div class="visual-overlay"></div>
+          <div class="estate-tag">RENAISSANCE PALAZZO</div>
+          <div class="estate-price">
+            <span class="currency">$68,000</span>
+            <span class="period">/ night</span>
+          </div>
+          <div class="visual-icon" aria-hidden="true">🏛️</div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-info">
+            <span class="estate-region">BELLAGIO • LAKE COMO, ITALY</span>
+            <h3>Palazzo del Cigno</h3>
+            <p class="estate-summary">Centuries-old aristocratic waterfront palace featuring Riva wooden yacht slips, neoclassical frescoed salons, a private cypress peninsula, and rare wine reserves.</p>
+          </div>
+
+          <div class="estate-specs-row">
+            <span class="spec-badge">18 VIP Guests</span>
+            <span class="spec-dot">•</span>
+            <span class="spec-badge">10 Historic Suites</span>
+            <span class="spec-dot">•</span>
+            <span class="spec-badge">Private Botanical Park</span>
+          </div>
+
+          <div class="amenities-container">
+            <div class="amenities-title-wrap">
+              <span class="amenity-section-label">CURATED LUXURY AMENITIES</span>
+              <span class="amenity-hint">Click badge for specs</span>
+            </div>
+            
+            <div class="badges-grid" role="list" aria-label="Curated Luxury Amenities for Palazzo del Cigno">
+              <!-- Private Dock Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="dock" aria-label="Amenity: Private Dock. Click to view superyacht slip specs.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Private Dock Icon">
+                    <circle cx="12" cy="5" r="2.5"></circle>
+                    <path d="M12 7.5V19.5"></path>
+                    <path d="M5.5 11.5h13"></path>
+                    <path d="M5 14.5c1.5 4.5 12.5 4.5 14 0"></path>
+                    <path d="M3 20.5h18" stroke-width="1.2" stroke-dasharray="2 2"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Private Dock</span>
+                  <span class="badge-sub">Covered Riva Boathouse</span>
+                </div>
+              </div>
+
+              <!-- Wine Cellar Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="wine" aria-label="Amenity: Wine Cellar. Click to view sommelier reserve vintages.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Wine Cellar Icon">
+                    <path d="M10 2.5h4v3a2 2 0 0 1-.6 1.4L12 8.5l-1.4-1.6A2 2 0 0 1 10 5.5v-3z"></path>
+                    <rect x="7" y="8.5" width="10" height="13" rx="2"></rect>
+                    <path d="M10 13h4"></path>
+                    <circle cx="12" cy="17" r="1.5" fill="#d4af37"></circle>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Wine Cellar</span>
+                  <span class="badge-sub">16th-Century Vaults</span>
+                </div>
+              </div>
+
+              <!-- Michelin Chef Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="chef" aria-label="Amenity: Michelin Chef. Click to view private brigade details.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Michelin Chef Icon">
+                    <path d="M12 3v2.5"></path>
+                    <circle cx="12" cy="3" r="1.2" fill="#d4af37"></circle>
+                    <path d="M4 16a8 8 0 0 1 16 0H4z"></path>
+                    <path d="M2.5 18.5h19"></path>
+                    <circle cx="8" cy="11.5" r="0.8" fill="#d4af37"></circle>
+                    <circle cx="12" cy="10" r="0.8" fill="#d4af37"></circle>
+                    <circle cx="16" cy="11.5" r="0.8" fill="#d4af37"></circle>
+                    <path d="M7 21h10" stroke-width="1.2"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Michelin Chef</span>
+                  <span class="badge-sub">Northern Italian Master</span>
+                </div>
+              </div>
+
+              <!-- Helipad Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="helipad" aria-label="Amenity: Helipad. Click to view aviation specs.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Helipad Icon">
+                    <circle cx="12" cy="12" r="9.5" stroke="#d4af37" stroke-width="1.5"></circle>
+                    <circle cx="12" cy="12" r="6" stroke="#d4af37" stroke-dasharray="2 2" stroke-width="1"></circle>
+                    <path d="M8 7.5v9M16 7.5v9M8 12h8" stroke="#d4af37" stroke-width="2.2"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Helipad</span>
+                  <span class="badge-sub">Lakeside Grass Pad</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="reserve-btn" onclick="openInquiryModal('Palazzo del Cigno')">Reserve Sanctuary ↗</button>
+            <button class="brochure-btn" onclick="downloadBrochure('Palazzo del Cigno')">Private Folio</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 5: Chalet Sommet Doré -->
+      <article class="card estate-card" data-amenities="helipad wine chef pool" data-title="Chalet Sommet Doré">
+        <div class="card-visual alps-visual">
+          <div class="visual-overlay"></div>
+          <div class="estate-tag">HELI-SKI CHALET</div>
+          <div class="estate-price">
+            <span class="currency">$48,000</span>
+            <span class="period">/ night</span>
+          </div>
+          <div class="visual-icon" aria-hidden="true">🏔️</div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-info">
+            <span class="estate-region">ZERMATT • SWISS ALPS</span>
+            <h3>Chalet Sommet Doré</h3>
+            <p class="estate-summary">Unrivaled alpine grandeur with direct heli-ski landing pad, indoor/outdoor heated thermal infinity pool with Matterhorn views, and an alpine sommelier tasting room.</p>
+          </div>
+
+          <div class="estate-specs-row">
+            <span class="spec-badge">12 VIP Guests</span>
+            <span class="spec-dot">•</span>
+            <span class="spec-badge">6 Penthouse Suites</span>
+            <span class="spec-dot">•</span>
+            <span class="spec-badge">Matterhorn Views</span>
+          </div>
+
+          <div class="amenities-container">
+            <div class="amenities-title-wrap">
+              <span class="amenity-section-label">CURATED LUXURY AMENITIES</span>
+              <span class="amenity-hint">Click badge for specs</span>
+            </div>
+            
+            <div class="badges-grid" role="list" aria-label="Curated Luxury Amenities for Chalet Sommet Doré">
+              <!-- Helipad Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="helipad" aria-label="Amenity: Helipad. Click to view aviation specs.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Helipad Icon">
+                    <circle cx="12" cy="12" r="9.5" stroke="#d4af37" stroke-width="1.5"></circle>
+                    <circle cx="12" cy="12" r="6" stroke="#d4af37" stroke-dasharray="2 2" stroke-width="1"></circle>
+                    <path d="M8 7.5v9M16 7.5v9M8 12h8" stroke="#d4af37" stroke-width="2.2"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Helipad</span>
+                  <span class="badge-sub">Glacier Heli-Ski Pad</span>
+                </div>
+              </div>
+
+              <!-- Wine Cellar Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="wine" aria-label="Amenity: Wine Cellar. Click to view sommelier reserve vintages.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Wine Cellar Icon">
+                    <path d="M10 2.5h4v3a2 2 0 0 1-.6 1.4L12 8.5l-1.4-1.6A2 2 0 0 1 10 5.5v-3z"></path>
+                    <rect x="7" y="8.5" width="10" height="13" rx="2"></rect>
+                    <path d="M10 13h4"></path>
+                    <circle cx="12" cy="17" r="1.5" fill="#d4af37"></circle>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Wine Cellar</span>
+                  <span class="badge-sub">Vintage Champagne Cave</span>
+                </div>
+              </div>
+
+              <!-- Michelin Chef Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="chef" aria-label="Amenity: Michelin Chef. Click to view private brigade details.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Michelin Chef Icon">
+                    <path d="M12 3v2.5"></path>
+                    <circle cx="12" cy="3" r="1.2" fill="#d4af37"></circle>
+                    <path d="M4 16a8 8 0 0 1 16 0H4z"></path>
+                    <path d="M2.5 18.5h19"></path>
+                    <circle cx="8" cy="11.5" r="0.8" fill="#d4af37"></circle>
+                    <circle cx="12" cy="10" r="0.8" fill="#d4af37"></circle>
+                    <circle cx="16" cy="11.5" r="0.8" fill="#d4af37"></circle>
+                    <path d="M7 21h10" stroke-width="1.2"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Michelin Chef</span>
+                  <span class="badge-sub">Swiss Fine Fondue &amp; Truffles</span>
+                </div>
+              </div>
+
+              <!-- Infinity Pool Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="pool" aria-label="Amenity: Infinity Pool. Click to view heated saltwater details.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Infinity Pool Icon">
+                    <path d="M2 8.5h20"></path>
+                    <path d="M2 13c2.5 0 3.5-1.5 6-1.5s3.5 1.5 6 1.5 3.5-1.5 6-1.5"></path>
+                    <path d="M2 17.5c2.5 0 3.5-1.5 6-1.5s3.5 1.5 6 1.5 3.5-1.5 6-1.5"></path>
+                    <circle cx="12" cy="5" r="2"></circle>
+                    <path d="M18 3.5l1.5 1.5M6 3.5L4.5 5"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Infinity Pool</span>
+                  <span class="badge-sub">Thermal Snow Horizon Pool</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="reserve-btn" onclick="openInquiryModal('Chalet Sommet Doré')">Reserve Sanctuary ↗</button>
+            <button class="brochure-btn" onclick="downloadBrochure('Chalet Sommet Doré')">Private Folio</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 6: The Obsidian Reef Pavilion -->
+      <article class="card estate-card" data-amenities="helipad dock chef pool wine" data-title="The Obsidian Reef Pavilion">
+        <div class="card-visual tahiti-visual">
+          <div class="visual-overlay"></div>
+          <div class="estate-tag">OVERWATER BIOSPHERE</div>
+          <div class="estate-price">
+            <span class="currency">$72,000</span>
+            <span class="period">/ night</span>
+          </div>
+          <div class="visual-icon" aria-hidden="true">🌊</div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-info">
+            <span class="estate-region">TETIAROA ATOLL • FRENCH POLYNESIA</span>
+            <h3>The Obsidian Reef Pavilion</h3>
+            <p class="estate-summary">Carbon-neutral architectural marvel floating over calm translucent waters, with dual heli-moorings, catamaran marina, master wine cellar, and sea infinity deck.</p>
+          </div>
+
+          <div class="estate-specs-row">
+            <span class="spec-badge">10 VIP Guests</span>
+            <span class="spec-dot">•</span>
+            <span class="spec-badge">5 Floating Pavilions</span>
+            <span class="spec-dot">•</span>
+            <span class="spec-badge">Lagoon Biosphere</span>
+          </div>
+
+          <div class="amenities-container">
+            <div class="amenities-title-wrap">
+              <span class="amenity-section-label">CURATED LUXURY AMENITIES</span>
+              <span class="amenity-hint">Click badge for specs</span>
+            </div>
+            
+            <div class="badges-grid" role="list" aria-label="Curated Luxury Amenities for The Obsidian Reef Pavilion">
+              <!-- Helipad Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="helipad" aria-label="Amenity: Helipad. Click to view aviation specs.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Helipad Icon">
+                    <circle cx="12" cy="12" r="9.5" stroke="#d4af37" stroke-width="1.5"></circle>
+                    <circle cx="12" cy="12" r="6" stroke="#d4af37" stroke-dasharray="2 2" stroke-width="1"></circle>
+                    <path d="M8 7.5v9M16 7.5v9M8 12h8" stroke="#d4af37" stroke-width="2.2"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Helipad</span>
+                  <span class="badge-sub">Offshore Floating Pad</span>
+                </div>
+              </div>
+
+              <!-- Private Dock Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="dock" aria-label="Amenity: Private Dock. Click to view superyacht slip specs.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Private Dock Icon">
+                    <circle cx="12" cy="5" r="2.5"></circle>
+                    <path d="M12 7.5V19.5"></path>
+                    <path d="M5.5 11.5h13"></path>
+                    <path d="M5 14.5c1.5 4.5 12.5 4.5 14 0"></path>
+                    <path d="M3 20.5h18" stroke-width="1.2" stroke-dasharray="2 2"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Private Dock</span>
+                  <span class="badge-sub">Catamaran &amp; Yacht Slips</span>
+                </div>
+              </div>
+
+              <!-- Michelin Chef Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="chef" aria-label="Amenity: Michelin Chef. Click to view private brigade details.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Michelin Chef Icon">
+                    <path d="M12 3v2.5"></path>
+                    <circle cx="12" cy="3" r="1.2" fill="#d4af37"></circle>
+                    <path d="M4 16a8 8 0 0 1 16 0H4z"></path>
+                    <path d="M2.5 18.5h19"></path>
+                    <circle cx="8" cy="11.5" r="0.8" fill="#d4af37"></circle>
+                    <circle cx="12" cy="10" r="0.8" fill="#d4af37"></circle>
+                    <circle cx="16" cy="11.5" r="0.8" fill="#d4af37"></circle>
+                    <path d="M7 21h10" stroke-width="1.2"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Michelin Chef</span>
+                  <span class="badge-sub">Tropical Fusion Degustation</span>
+                </div>
+              </div>
+
+              <!-- Infinity Pool Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="pool" aria-label="Amenity: Infinity Pool. Click to view heated saltwater details.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Infinity Pool Icon">
+                    <path d="M2 8.5h20"></path>
+                    <path d="M2 13c2.5 0 3.5-1.5 6-1.5s3.5 1.5 6 1.5 3.5-1.5 6-1.5"></path>
+                    <path d="M2 17.5c2.5 0 3.5-1.5 6-1.5s3.5 1.5 6 1.5 3.5-1.5 6-1.5"></path>
+                    <circle cx="12" cy="5" r="2"></circle>
+                    <path d="M18 3.5l1.5 1.5M6 3.5L4.5 5"></path>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Infinity Pool</span>
+                  <span class="badge-sub">Overwater Lagoon Edge</span>
+                </div>
+              </div>
+
+              <!-- Wine Cellar Badge -->
+              <div class="amenity-badge" role="button" tabindex="0" data-amenity="wine" aria-label="Amenity: Wine Cellar. Click to view sommelier reserve vintages.">
+                <div class="badge-icon-wrap" aria-hidden="true">
+                  <svg class="amenity-svg" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Wine Cellar Icon">
+                    <path d="M10 2.5h4v3a2 2 0 0 1-.6 1.4L12 8.5l-1.4-1.6A2 2 0 0 1 10 5.5v-3z"></path>
+                    <rect x="7" y="8.5" width="10" height="13" rx="2"></rect>
+                    <path d="M10 13h4"></path>
+                    <circle cx="12" cy="17" r="1.5" fill="#d4af37"></circle>
+                  </svg>
+                </div>
+                <div class="badge-text-group">
+                  <span class="badge-title">Wine Cellar</span>
+                  <span class="badge-sub">Undersea Vault Storage</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="reserve-btn" onclick="openInquiryModal('The Obsidian Reef Pavilion')">Reserve Sanctuary ↗</button>
+            <button class="brochure-btn" onclick="downloadBrochure('The Obsidian Reef Pavilion')">Private Folio</button>
+          </div>
+        </div>
+      </article>
     </div>
   </main>
+
+  <!-- Aviation & Transport Concierge Section -->
+  <section class="aviation-section" id="aviation-charter">
+    <div class="aviation-card">
+      <div class="aviation-badge">INTERCONTINENTAL TRANSIT</div>
+      <div class="aviation-icon" aria-hidden="true">🛩️</div>
+      <h2>Bombardier Global Express 7500 Charter</h2>
+      <p>Seamless direct transit from London, New York, or Dubai directly to your private estate's certified helipad or regional VIP airstrip.</p>
+      <div class="fleet-specs-tags">
+        <span class="fleet-tag">7,700 NM Range</span>
+        <span class="fleet-tag">Mach 0.925</span>
+        <span class="fleet-tag">Master Stateroom Suite</span>
+        <span class="fleet-tag">Ka-band High-Speed Wifi</span>
+      </div>
+      <button class="fleet-btn" onclick="openInquiryModal('Global Express 7500 Aviation Flight')">Book Jet &amp; Helicopter Transfer ↗</button>
+    </div>
+  </section>
+
+  <!-- Amenity Detail Specs Modal -->
+  <div class="modal-backdrop" id="amenity-modal" aria-hidden="true">
+    <div class="modal-window amenity-modal-window" role="dialog" aria-modal="true" aria-labelledby="modal-amenity-title">
+      <button class="modal-close-btn" onclick="closeAmenityModal()" aria-label="Close specification dialog">✕</button>
+      <div class="modal-header">
+        <div class="modal-gold-tag">AURA CERTIFIED SPECIFICATIONS</div>
+        <div class="modal-icon-badge" id="modal-amenity-icon"></div>
+        <h3 id="modal-amenity-title">Amenity Specifications</h3>
+        <p class="modal-subtitle" id="modal-amenity-subtitle">Ultra-luxury standard verification</p>
+      </div>
+      <div class="modal-body" id="modal-amenity-content">
+        <!-- Injected via JavaScript -->
+      </div>
+      <div class="modal-footer">
+        <button class="modal-primary-btn" onclick="closeAmenityModal()">Understood</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIP Inquiry Modal -->
+  <div class="modal-backdrop" id="inquiry-modal" aria-hidden="true">
+    <div class="modal-window inquiry-modal-window" role="dialog" aria-modal="true" aria-labelledby="inquiry-modal-title">
+      <button class="modal-close-btn" onclick="closeInquiryModal()" aria-label="Close inquiry dialog">✕</button>
+      <div class="modal-header">
+        <div class="modal-gold-tag">CONFIDENTIAL INQUIRY</div>
+        <h3 id="inquiry-modal-title">Private Concierge Booking</h3>
+        <p class="modal-subtitle">Direct line to Aura Realms Executive VIP Liaison</p>
+      </div>
+      <form class="inquiry-form" onsubmit="submitInquiry(event)">
+        <div class="form-group">
+          <label for="estate-select">Selected Sanctuary / Asset</label>
+          <input type="text" id="estate-select" name="estate" readonly />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="client-name">Guest of Honor Name</label>
+            <input type="text" id="client-name" name="name" placeholder="Lord / Lady / Principal Name" required />
+          </div>
+          <div class="form-group">
+            <label for="client-email">Confidential Contact (Email or Signal)</label>
+            <input type="email" id="client-email" name="email" placeholder="principal@familyoffice.ch" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="guest-count">Charter Party Size</label>
+            <select id="guest-count" name="guests">
+              <option value="2-4">Intimate (2 - 4 Guests)</option>
+              <option value="6-10" selected>Family / Delegation (6 - 10 Guests)</option>
+              <option value="12-20">Full Retinue (12 - 20 Guests)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="transfer-mode">Arrival Transfer Mode</label>
+            <select id="transfer-mode" name="transfer">
+              <option value="helicopter" selected>Private Helicopter (Helipad landing)</option>
+              <option value="yacht">Superyacht Tender (Private Dock berthing)</option>
+              <option value="jet">Global 7500 Jet + VIP Chauffeur</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="special-requests">Bespoke Requests &amp; Sommelier Preferences</label>
+          <textarea id="special-requests" name="requests" rows="3" placeholder="Specify wine allocations, dietary mandates, security protocol, or custom arrival ceremonies..."></textarea>
+        </div>
+        <button type="submit" class="submit-inquiry-btn">Transmit Confidential Inquiry ↗</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Footer -->
+  <footer class="luxury-footer">
+    <div class="footer-crest" aria-hidden="true">⚜</div>
+    <div class="footer-brand">AURA REALMS INTERNATIONAL CONCIERGE</div>
+    <p>Geneva • Monaco • London • Mayfair • Singapore • Dubai</p>
+    <div class="footer-meta">
+      <span>© 2026 Aura Realms. All Rights Reserved. Fully Certified Luxury Sanctuaries.</span>
+    </div>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
